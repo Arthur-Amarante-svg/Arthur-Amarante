@@ -1,0 +1,28 @@
+N, M, K = map(int, input().split())
+
+hidrovias = []
+rodovias = []
+
+for i in range(N):
+    a, b, t = map(int, input().split())
+    if t == 1:
+        hidrovias.append([a, b])
+    elif t == 2:
+        rodovias.append([a, b])
+for conjunto in hidrovias:
+    for item in hidrovias:
+        comuns = set(conjunto) & set(item)
+        if comuns == True:
+            set(conjunto) | set(item)
+for conjunto in rodovias:
+    for item in rodovias:
+        comuns = set(conjunto) & set(item)
+        if comuns == True:
+            set(conjunto) | set(item)
+comuns = set(hidrovias[0]) & set(rodovias[0])
+if comuns == True:
+    caminho = set(hidrovias[0]) | set(rodovias[0])
+    if len(caminho) == N:
+        print("S")
+    else:
+        print("N")
